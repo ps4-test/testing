@@ -32,7 +32,7 @@ class TimeOut(commands.Cog):
     @timeout.error
     async def timeout_error(self,ctx,error):
         if isinstance(error,commands.MissingRequiredArgument):
-            await ctx.reply(f"Error: Missing Required Arguments!, You must pass a userID or '@' mention to run kick command")
+            await ctx.reply(f"Error: Missing Required Arguments!, You must pass a userID or '@' mention to run timeout command")
         elif isinstance(error,commands.MissingPermissions):
             await ctx.reply(f"Error: Missing Required Permissions, You must have the required permission(s) assigned to your role(s) \n{t_error}")
         elif isinstance(error,commands.BotMissingPermissions):
