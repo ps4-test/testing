@@ -28,6 +28,12 @@ class TimeOut(commands.Cog):
         
         await member.timeout(duration)
         await ctx.reply(embed=timeout_embed)
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(moderate_members=True)
+    @commands.bot_has_permissions(moderate_members=True)
+    async def timedout(self,ctx,member:discord.Member):
+        await ctx.reply(f'{member.mention} is timedout {member.is_timed_out()}')
         
     @timeout.error
     async def timeout_error(self,ctx,error):
@@ -36,8 +42,16 @@ class TimeOut(commands.Cog):
         elif isinstance(error,commands.MissingPermissions):
             await ctx.reply(f"Error: Missing Required Permissions, You must have the required permission(s) assigned to your role(s) \n{t_error}")
         elif isinstance(error,commands.BotMissingPermissions):
+            await ctx.reply(f"Error: Missing Required Permissions, {self.client.user} must have the required permission(s) assigned to {self.client.user} role(s) \n{t_error}")
+    
+    @timedout.error
+    async def timedout_error(self,ctx,error):
+        if isinstance(error,commands.MissingRequiredArgument):
+            await ctx.reply(f"Error: Missing Required Arguments!, You must pass a userID or '@' mention to run timedout command")
+        elif isinstance(error,commands.MissingPermissions):
             await ctx.reply(f"Error: Missing Required Permissions, You must have the required permission(s) assigned to your role(s) \n{t_error}")
-
+        elif isinstance(error,commands.BotMissingPermissions):
+            await ctx.reply(f"Error: Missing Required Permissions, {self.client.user} must have the required permission(s) assigned to {self.client.user} role(s) \n{t_error}")
             
 
 async def setup(client):
