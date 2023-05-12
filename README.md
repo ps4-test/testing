@@ -1,4 +1,4 @@
-# Discord-bot-real
+# Alpha-Discord-Bot
 
 These are the files for a Discord bot.
 
