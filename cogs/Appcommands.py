@@ -1,4 +1,4 @@
-import discord 
+import discord,random
 from discord import app_commands
 from discord.ext import commands
 
@@ -29,8 +29,8 @@ class AppCommands(commands.Cog):
     @app_commands.command(name='ping',description='replies with pong!')
     @app_commands.guild_only()
     async def ping(self,interaction:discord.Interaction):
-        bot_response='pong'
-        await interaction.response.send_message(f'{bot_response}')
+        bot_latency = round(self.client.latency * 1000)
+        await interaction.response.send_message(f'Pong! {bot_latency}ms.')
     
     @app_commands.command(name='userinfo',description='Sends the user\'s information in a embed (sends own if user if left none!)')
     @app_commands.guild_only()
@@ -51,5 +51,45 @@ class AppCommands(commands.Cog):
         info_embed.add_field(name='Creation Date:',value=member.created_at.__format__('%A,%d. %B %Y @ %H:%M:%S'),inline=False)
 
         await interaction.response.send_message(embed=info_embed)
+
+    @app_commands.command(name='random_number_generator',description='Generates a Random number b/w 0 and 1000')
+    @app_commands.guild_only()
+    async def RNG(self,interaction:discord.Interaction):
+        start,end=0,1000
+        result = random.randint(start,end)
+        response=f'The random number from {start} to {end} is {result}'
+        await interaction.response.send_message(f'{response}')
+    
+    @app_commands.command(name='rock_paper_scissors',description='...')
+    @app_commands.guild_only()
+    async def RPS(self,interaction:discord.Interaction):
+        rps_list=['rock :rock:','paper :roll_of_paper:','scissors :scissors:']
+        result = random.choice(rps_list)
+        await interaction.response.send_message(f'The result is: {result}')
+    
+    @app_commands.command(name='flip_a_coin',description='Sends the user\'s information in a embed (sends own if user if left none!)')
+    @app_commands.guild_only()
+    async def flip_a_coin(self,interaction:discord.Interaction):
+        flip=['heads','tails']
+        result = random.choice(flip)
+        await interaction.response.send_message(f'It\'s {result}!')
+    
+    @app_commands.command(name='roll_dice',description='Sends the user\'s information in a embed (sends own if user if left none!)')
+    @app_commands.guild_only()
+    async def roll_dice(self,interaction:discord.Interaction):
+        dice=[
+            'https://cdn.discordapp.com/attachments/1103884906146308178/1106532802557653003/pngwing.com.png',
+            'https://cdn.discordapp.com/attachments/1103884906146308178/1106532885239967784/pngwing.com_6.png',
+            'https://media.discordapp.net/attachments/1103884906146308178/1106532802087878717/pngwing.com_5.png?width=670&height=670',
+            'https://media.discordapp.net/attachments/1103884906146308178/1106532803501359204/pngwing.com_2.png?width=670&height=670',
+            'https://media.discordapp.net/attachments/1103884906146308178/1106532801697816677/pngwing.com_4.png?width=670&height=670',
+            'https://media.discordapp.net/attachments/1103884906146308178/1106532803098714112/pngwing.com_1.png?width=670&height=670'
+        ]
+        dice_roll=random.choice(dice)
+        dice_embed = discord.Embed(title='**Dice Roll**',color=discord.Color.random())
+        dice_embed.set_image(url=f'{dice_roll}')
+
+        await interaction.response.send_message(embed=dice_embed)
+
 async def setup(client):
     await client.add_cog(AppCommands(client))
