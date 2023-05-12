@@ -20,10 +20,10 @@ class TimeOut(commands.Cog):
             await ctx.reply('**You cannot timeout yourself!**')
 
         duration =  datetime.timedelta(seconds=seconds)
-        timeout_embed = discord.Embed(title='**User Timedout!**',color=discord.Color.dark_red())
+        timeout_embed = discord.Embed(title='**Member Timed Out!**',color=discord.Color.dark_red())
         timeout_embed.add_field(name='**Name of the member:**',value=f'{member.mention}',inline=False)
         timeout_embed.add_field(name='**User ID of the member:**',value=f'{member.id}',inline=False)
-        timeout_embed.add_field(name='**Duration of the member:**',value=f'**{duration}**',inline=False)
+        timeout_embed.add_field(name='**Duration of the timeout:**',value=f'**{duration}**',inline=False)
         timeout_embed.add_field(name='**Reason of the timeout:**',value=f'{reason}',inline=False)
         
         await member.timeout(duration)
