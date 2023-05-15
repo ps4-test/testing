@@ -17,6 +17,7 @@ class HelpCommand(commands.Cog):
         help_embed =  discord.Embed(title=f'Help desk for {self.client.user}',description='All commands for the bot.',color=discord.Color.random())
 
         help_embed.set_author(name='Goenka Tech Fest')
+        help_embed.add_field(name=f'**{command_prefix}Leave sever_name:**',value='Leaves the server as per the name entered (user carefully,only for the bot owner)!',inline=False)
         help_embed.add_field(name=f'**{command_prefix}clear msg_count:**',value='Deletes a specified amount of messages.',inline=False)
         help_embed.add_field(name=f'**{command_prefix}kick id/@ reason=(if any):**',value='Kicks a user from guild/server.',inline=False)
         help_embed.add_field(name=f'**{command_prefix}ban id/@ reason=(if any):**',value='Bans a user from guild/server.',inline=False)

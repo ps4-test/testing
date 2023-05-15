@@ -12,8 +12,15 @@ class Events(commands.Cog):
     
     @commands.Cog.listener()
     async def on_guild_join(self,guild):
-        channel = await guild.create_text_channel('log-channel')
-        await channel.send('```Use .$Setup!```')
+        check_channel = discord.utils.get(guild.channels,name='log-channel')
+        if check_channel is None:
+            channel = await guild.create_text_channel('log-channel')
+            await channel.send('```This Channel has been set for Auto Logging.```')
+            await channel.send('```Use .$Setup```')
+        else:
+            print('Channel Already Exists!')
+            return
+
     
     @commands.Cog.listener()
     async def on_message(self, message):
