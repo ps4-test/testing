@@ -17,6 +17,7 @@ class Events(commands.Cog):
             channel = await guild.create_text_channel('log-channel')
             await channel.send('```This Channel has been set for Auto Logging.```')
             await channel.send('```Use .$Setup```')
+            print('Channel Created!')
         else:
             print('Channel Already Exists!')
             return
