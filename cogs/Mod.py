@@ -1,5 +1,4 @@
-import discord 
-from discord.ext import commands
+
 c_error='Manage Messages'
 K_error='Kick Members'
 b_error='Ban/Unban Members'
@@ -8,9 +7,7 @@ class Mods(commands.Cog):
     def __init__(self,client):
         self.client = client
     
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('Mods.py is ready!')
+   
     
     @commands.command()
     @commands.guild_only()
@@ -117,5 +114,4 @@ class Mods(commands.Cog):
         elif isinstance(error,commands.BotMissingPermissions):
             await ctx.reply(f'Error: Bot Missing Required Permissions, The bot must have the required permission(s) assigend to its role(s) \n{K_error}')
 
-async def setup(client):
-    await client.add_cog(Mods(client))
+
