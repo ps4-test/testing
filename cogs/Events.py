@@ -5,10 +5,7 @@ from discord.ext import commands
 class Events(commands.Cog):
     def __init__(self,client):
         self.client = client
-    
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('Events.py is ready!')
+   
     
     @commands.Cog.listener()
     async def on_guild_join(self,guild):
@@ -92,5 +89,4 @@ class Events(commands.Cog):
         event_embed.add_field(name='**Role ID:**',value=f'{role.id}',inline=False)
         await log_channel.send(embed=event_embed)
        
-async def setup(client):
-    await client.add_cog(Events(client))
+
