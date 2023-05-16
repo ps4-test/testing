@@ -21,5 +21,3 @@ class Uptime(commands.Cog):
 
         await ctx.send(embed=time_embed) 
 
-async def setup(client):
-    await client.add_cog(Uptime(client))
