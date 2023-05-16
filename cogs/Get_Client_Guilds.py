@@ -6,10 +6,7 @@ class Get_Client_Guilds(commands.Cog):
     def __init__(self,client):
         self.client = client
     
-    @commands.Cog.listener()
-    async def on_ready(self):
-        await self.client.tree.sync()
-        print('Get_Client_Guilds.py is ready!')
+    
     
     @commands.command()
     @commands.is_owner()
@@ -27,5 +24,3 @@ class Get_Client_Guilds(commands.Cog):
         if ctx.author.id != 397679536818487296:
             await ctx.reply(f'**Error: Your are forbiddened from using this command!!** \n __only the owner of this bot can use it__ ')
             
-async def setup(client):
-    await client.add_cog(Get_Client_Guilds(client))
