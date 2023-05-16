@@ -1,5 +1,4 @@
-import discord 
-from discord.ext import commands
+
 
 class SetupHelp(commands.Cog):
     def __init__(self,client):
@@ -24,5 +23,3 @@ class SetupHelp(commands.Cog):
 
 req_perm_role = '''**__Kick Member\nBan Member\nManage Messages\nAdministartor (for your self)\nMake #log-channel a private channel for only admin\staff__**'''
 
-async def setup(client):
-    await client.add_cog(SetupHelp(client))
