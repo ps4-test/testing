@@ -5,9 +5,7 @@ class EMBEDED(commands.Cog):
     def __init__(self,client):
         self.client = client
     
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('embed.py is ready!')
+    
     
     @commands.command()
     @commands.guild_only()
@@ -23,8 +21,7 @@ class EMBEDED(commands.Cog):
 
         await ctx.send(embed = embed_message)
 
-async def setup(client):
-    await client.add_cog(EMBEDED(client))
+
 
 
 
