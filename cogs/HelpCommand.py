@@ -1,13 +1,10 @@
-import discord 
-from discord.ext import commands
+
 
 class HelpCommand(commands.Cog):
     def __init__(self,client):
         self.client = client
     
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('HelpCommand.py is ready!')
+   
     
     @commands.command()
     @commands.guild_only()
@@ -33,5 +30,4 @@ class HelpCommand(commands.Cog):
         await ctx.send('Check your direct messages for a list of commands!')
         await ctx.author.send(embed=help_embed)
 
-async def setup(client):
-    await client.add_cog(HelpCommand(client))
+
